@@ -1,20 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script type="text/javascript">
-    $(document).ready(function(){
-    	//form 서브밋
- $("form")	
+$(document).ready(function() {
+	//form 서브밋
 	//id. 비번이 0인 경우 에러창 띄우고
 	//전송금지
-    	});
-//비번확인
- $("#passwd2")
-	//키 이벤트 발생시 패스워드 일치여부 검사 
-	});
- });
- }
+	 $("form").on("submit", function() {
+	 	var userid= $("#userid").val();
+	 	var passwd= $("#passwd").val();
+		 	if (userid.length==0) {
+				alert("아이디를 입력하세요");
+				$("#userid").focus();
+				event.preventDefault();
+			} else if (passwd.length==0) {
+				alert("비밀번호를 입력하세요");
+				$("#passwd").focus();
+				event.preventDefault();
+			}
+	 })
+
+	//비번확인 //키 이벤트 발생시 패스워드 일치여부 검사
+	 $("#passwd2").on("keyup", function() {
+	 	var passwd= $("#passwd").val();
+	 	var mesg= "비번 불일치";
+	 	if (passwd == $(this).val()) {
+			mesg= "비번 일치"
+		}
+	 	$("#result2").text(mesg); 
+	 })
+	 //이메일 주소
+	 $("select").on("change", function() {
+		 console.log($(this).val())
+		 $("#email2").val($(this).val());
+	 })
+
+		
+})//ready
+ 
 </script>    
 <form action="MemberAddServlet" method="get">
 *아이디:<input type="text" name="userid" id="userid"><br> 
@@ -36,7 +61,7 @@
 <input type="text" name="phone2" >-<input type="text" name="phone3" >
 <br>
 이메일:<input type="text" name="email1" >@
-       <input type="text" name="email2"  placeholder="직접입력">
+       <input type="text" name="email2" id="email2" placeholder="직접입력">
        <select>
         <option value="daum.net">daum.net</option>
         <option value="naver.com">naver.com</option>
