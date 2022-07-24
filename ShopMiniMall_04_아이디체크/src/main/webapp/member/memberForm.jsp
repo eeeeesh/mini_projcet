@@ -58,7 +58,7 @@ $(document).ready(function() {
 })//ready
  
 </script>    
-<form action="MemberAddServlet" method="get">
+<form action="MemberAddSClasservlet" method="get">
 *아이디:<input type="text" name="userid" id="userid">
 <span id="result"></span>
 <br>
